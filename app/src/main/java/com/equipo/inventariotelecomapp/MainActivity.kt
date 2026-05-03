@@ -10,7 +10,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.equipo.inventariotelecomapp.screens.InventoryScreen
-import com.equipo.inventariotelecomapp.screens.ProductDetailScreen // Asegúrate de crear esta pantalla
+import com.equipo.inventariotelecomapp.screens.ProductDetailScreen
+import com.equipo.inventariotelecomapp.screens.LoginScreen
 import com.equipo.inventariotelecomapp.ui.theme.InventarioTelecomAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,15 +20,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             InventarioTelecomAppTheme {
-                // 1. Creamos el controlador de navegación
+
                 val navController = rememberNavController()
 
-                // 2. Definimos el Host con las rutas
                 NavHost(
                     navController = navController,
-                    startDestination = "inventory" // Pantalla de inicio
+                    startDestination = "login"
                 ) {
-                    // Ruta de la Lista
+                    // Ruta de Login
+                    composable("login") {
+                        LoginScreen(onLoginSuccess = { nombreUsuario ->
+                            navController.navigate("inventory") {
+                                popUpTo("login") { inclusive = true }
+                            }
+                        })
+                    }
+
+                    // Ruta de la Lista de Inventario
                     composable("inventory") {
                         InventoryScreen(onNavigateToDetail = { productId ->
                             navController.navigate("detail/$productId")

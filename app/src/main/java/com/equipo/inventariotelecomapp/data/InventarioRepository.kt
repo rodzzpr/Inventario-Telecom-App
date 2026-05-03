@@ -31,9 +31,9 @@ object InventarioRepository {
     )
 
     val listaTecnicos = mutableListOf(
-        Tecnico(1, "Ricardo Prado", "Instalador"),
-        Tecnico(2, "Alejandro Zarruk", "Fibra Óptica"),
-        Tecnico(3, "Anthony Flores", "Soporte Redes")
+        Tecnico(1, "Ricardo Prado", "Instalador", "admin123"),
+        Tecnico(2, "Alejandro Zarruk", "Fibra Óptica", "zarruk2026"),
+        Tecnico(3, "Anthony Flores", "Soporte Redes", "flores99")
     )
 
     val historialRetiros = mutableListOf<Retiro>()

@@ -12,7 +12,8 @@ data class Producto(
 data class Tecnico(
     val id: Int,
     val nombre: String,
-    val especialidad: String
+    val especialidad: String,
+    val password: String
 )
 
 data class Retiro(
