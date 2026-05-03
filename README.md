@@ -1,4 +1,5 @@
 **Inventario Telecom App** 📱
+
 📝 Descripción del Proyecto
 Esta aplicación es un prototipo funcional diseñado para optimizar el flujo de inventario en empresas de telecomunicaciones. La solución permite la gestión de salidas de materiales y el monitoreo de insumos mediante una interfaz moderna, asegurando un flujo coherente entre el registro de técnicos y el control de existencias.
 
