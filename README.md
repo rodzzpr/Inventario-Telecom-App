@@ -34,6 +34,7 @@ Sincronizar Gradle: Permitir que el IDE descargue las dependencias necesarias.
 Ejecutar: Correr la aplicación en un emulador o dispositivo físico con API 30 o superior.
 
 🖥️ **Características de la Aplicación**
+
 Pantallas: Mínimo 4 vistas funcionales integradas.
 
 Interactividad: Uso de listas dinámicas, campos de texto y botones de acción.
