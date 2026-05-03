@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.ElectricalServices
 import androidx.compose.material.icons.filled.Router
@@ -23,7 +24,10 @@ import com.equipo.inventariotelecomapp.model.Producto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InventoryScreen(onNavigateToDetail: (Int) -> Unit) { // Recibe la función de navegación
+fun InventoryScreen(
+    onNavigateToDetail: (Int) -> Unit,
+    onLogout: () -> Unit // <--- 1. Agregado el parámetro faltante
+) {
     val productos = InventarioRepository.listaProductos
 
     Scaffold(
@@ -36,6 +40,16 @@ fun InventoryScreen(onNavigateToDetail: (Int) -> Unit) { // Recibe la función d
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onPrimary
                     )
+                },
+                // 2. Agregamos el botón de cerrar sesión en las acciones
+                actions = {
+                    IconButton(onClick = onLogout) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ExitToApp,
+                            contentDescription = "Cerrar Sesión",
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary
@@ -63,7 +77,7 @@ fun InventoryScreen(onNavigateToDetail: (Int) -> Unit) { // Recibe la función d
             items(productos) { producto ->
                 ProductCard(
                     producto = producto,
-                    onClick = { onNavigateToDetail(producto.id) } // Dispara la navegación
+                    onClick = { onNavigateToDetail(producto.id) }
                 )
             }
         }
@@ -71,14 +85,14 @@ fun InventoryScreen(onNavigateToDetail: (Int) -> Unit) { // Recibe la función d
 }
 
 @Composable
-fun ProductCard(producto: Producto, onClick: () -> Unit) { // Nueva lambda onClick
+fun ProductCard(producto: Producto, onClick: () -> Unit) {
     val esStockBajo = producto.stock < 30
     val colorAlerta = if (esStockBajo) Color.Red else MaterialTheme.colorScheme.primary
 
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }, // Hace que toda la tarjeta sea clickable
+            .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surface

@@ -31,15 +31,15 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Campo de Usuario (Nombre del Técnico)
+        // Campo de Usuario (ID/Username del Técnico)
         OutlinedTextField(
             value = usuario,
             onValueChange = {
                 usuario = it
                 isError = false
             },
-            label = { Text("Nombre de Técnico") },
-            placeholder = { Text("Ej: Ricardo Prado") },
+            label = { Text("Usuario") }, // Cambiado a "Usuario" para ser más técnico
+            placeholder = { Text("Ej: cashprofe") }, // Placeholder actualizado
             modifier = Modifier.fillMaxWidth(),
             isError = isError,
             singleLine = true
@@ -82,15 +82,15 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit) {
                     return@Button
                 }
 
-                // Validación contra el repositorio (Nombre y Password)
+                // Validación contra el repositorio usando el campo 'username'
                 val tecnicoEncontrado = InventarioRepository.listaTecnicos.find {
-                    it.nombre.equals(usuario, ignoreCase = true) && it.password == password
+                    it.username.equals(usuario, ignoreCase = true) && it.password == password
                 }
 
                 if (tecnicoEncontrado != null) {
                     onLoginSuccess(tecnicoEncontrado.nombre)
                 } else {
-                    errorMessage = "Credenciales incorrectas"
+                    errorMessage = "Usuario o contraseña incorrectos"
                     isError = true
                 }
             },

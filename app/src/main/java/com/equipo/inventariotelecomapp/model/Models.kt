@@ -12,6 +12,7 @@ data class Producto(
 data class Tecnico(
     val id: Int,
     val nombre: String,
+    val username: String,
     val especialidad: String,
     val password: String
 )

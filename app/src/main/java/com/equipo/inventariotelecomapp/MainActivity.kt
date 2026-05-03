@@ -20,30 +20,33 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             InventarioTelecomAppTheme {
-
                 val navController = rememberNavController()
 
                 NavHost(
                     navController = navController,
                     startDestination = "login"
                 ) {
-                    // Ruta de Login
                     composable("login") {
-                        LoginScreen(onLoginSuccess = { nombreUsuario ->
+                        LoginScreen(onLoginSuccess = { _ ->
                             navController.navigate("inventory") {
                                 popUpTo("login") { inclusive = true }
                             }
                         })
                     }
 
-                    // Ruta de la Lista de Inventario
                     composable("inventory") {
-                        InventoryScreen(onNavigateToDetail = { productId ->
-                            navController.navigate("detail/$productId")
-                        })
+                        InventoryScreen(
+                            onNavigateToDetail = { productId ->
+                                navController.navigate("detail/$productId")
+                            },
+                            onLogout = {
+                                navController.navigate("login") {
+                                    popUpTo("inventory") { inclusive = true }
+                                }
+                            }
+                        )
                     }
 
-                    // Ruta del Detalle (recibe un argumento ID)
                     composable(
                         route = "detail/{productId}",
                         arguments = listOf(navArgument("productId") { type = NavType.IntType })
