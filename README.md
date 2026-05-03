@@ -1,24 +1,37 @@
-# Inventario Telecom App 📱
+**Inventario Telecom App** 📱
+📝 Descripción del Proyecto
+Esta aplicación es un prototipo funcional diseñado para optimizar el flujo de inventario en empresas de telecomunicaciones. La solución permite la gestión de salidas de materiales y el monitoreo de insumos mediante una interfaz moderna, asegurando un flujo coherente entre el registro de técnicos y el control de existencias.
 
-## 📝 Descripción del Proyecto
-Esta aplicación móvil resuelve el descontrol en el flujo de inventario de campo en empresas de telecomunicaciones. Permite registrar salidas de material vinculadas a técnicos responsables, asegurando la trazabilidad y el monitoreo constante del stock de insumos críticos.
+👥 **Equipo de Desarrollo**
+Ricardo Prado
 
-## 🛠️ Tecnologías Utilizadas
-* **Lenguaje:** Kotlin
-* **Framework UI:** Jetpack Compose para interfaces modernas e interactivas
-* **Arquitectura:** Programación Orientada a Objetos (POO)
-* **Persistencia:** SQLite/Room (basado en el modelo físico diseñado en Enterprise Architect)[cite: 1]
-* **Control de Versiones:** Git con flujo de trabajo basado en ramas
+Alejandro Zarruk
 
-## 🚀 Instrucciones de Ejecución
-1. **Clonar el repositorio:** `git clone https://github.com/rodzzpr/Inventario-Telecom-App.git`
-2. **Abrir en Android Studio:** Se recomienda la versión Koala o superior.
-3. **Sincronizar Gradle:** Esperar a que descarguen todas las dependencias.
-4. **Ejecutar:** Seleccionar un emulador (API 30+) o dispositivo físico y presionar "Run".
+Anthony Flores
 
-## 📊 Modelo de Datos
-El sistema se basa en un modelo relacional de 4 tablas principales:
-* **Producto:** Catálogo maestro y stock actual.
-* **Tecnico:** Registro de personal autorizado.
-* **Retiro:** Registro transaccional de movimientos.
-* **Insumocritico:** Parámetros de alerta para productos sensibles.
+🛠️ **Tecnologías Utilizadas**
+Lenguaje: Kotlin
+
+Framework UI: Jetpack Compose (Interfaces modernas y reactivas)
+
+Arquitectura: Programación Orientada a Objetos (POO)
+
+Navegación: Compose Navigation para el flujo entre pantallas
+
+Control de Versiones: Git con flujo de trabajo basado en ramas
+
+🚀 **Instrucciones para Ejecutar la App**
+Clonar el repositorio: git clone [https://github.com/rodzzpr/Inventario-Telecom-App.git](https://github.com/rodzzpr/Inventario-Telecom-App.git)
+
+Abrir en Android Studio: Importar el proyecto como una "Empty Compose Activity".
+
+Sincronizar Gradle: Permitir que el IDE descargue las dependencias necesarias.
+
+Ejecutar: Correr la aplicación en un emulador o dispositivo físico con API 30 o superior.
+
+🖥️ **Características de la Aplicación**
+Pantallas: Mínimo 4 vistas funcionales integradas.
+
+Interactividad: Uso de listas dinámicas, campos de texto y botones de acción.
+
+Lógica: Implementación de principios de POO para la gestión de productos y técnicos.
