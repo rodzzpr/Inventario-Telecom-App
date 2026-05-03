@@ -1,4 +1,5 @@
 package com.equipo.inventariotelecomapp.data
+
 import com.equipo.inventariotelecomapp.model.Producto
 import com.equipo.inventariotelecomapp.model.Tecnico
 import com.equipo.inventariotelecomapp.model.Retiro
@@ -6,15 +7,33 @@ import com.equipo.inventariotelecomapp.model.Retiro
 // Clase encargada de la lógica de datos
 object InventarioRepository {
     val listaProductos = mutableListOf(
-        Producto(1, "Cable UTP Cat6", 500, "Metros"),
-        Producto(2, "Conector RJ45", 1000, "Unidades"),
-        Producto(3, "Router Dual Band", 25, "Unidades")
+        Producto(
+            id = 1,
+            nombre = "Cable UTP Cat6",
+            stock = 500,
+            unidad = "Metros",
+            descripcion = "Cable de red de alto rendimiento diseñado para transmisiones de datos a velocidades de hasta 1 Gbps. Ideal para instalaciones de infraestructura interna y racks de telecomunicaciones."
+        ),
+        Producto(
+            id = 2,
+            nombre = "Conector RJ45",
+            stock = 1000,
+            unidad = "Unidades",
+            descripcion = "Conectores modulares estándar para terminación de cables Cat6. Cuentan con contactos bañados en oro para asegurar la mejor conductividad y evitar la corrosión."
+        ),
+        Producto(
+            id = 3,
+            nombre = "Router Dual Band",
+            stock = 25,
+            unidad = "Unidades",
+            descripcion = "Enrutador inalámbrico de doble banda (2.4GHz y 5GHz) con tecnología MU-MIMO. Proporciona una cobertura extendida y estabilidad de conexión para múltiples dispositivos simultáneos."
+        )
     )
 
     val listaTecnicos = mutableListOf(
         Tecnico(1, "Ricardo Prado", "Instalador"),
-        Tecnico(2, "Alejandro Mendoza", "Fibra Óptica"),
-        Tecnico(3, "Anthony Torres", "Soporte Redes")
+        Tecnico(2, "Alejandro Zarruk", "Fibra Óptica"),
+        Tecnico(3, "Anthony Flores", "Soporte Redes")
     )
 
     val historialRetiros = mutableListOf<Retiro>()

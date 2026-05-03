@@ -5,7 +5,8 @@ data class Producto(
     val id: Int,
     val nombre: String,
     var stock: Int,
-    val unidad: String
+    val unidad: String,
+    val descripcion: String
 )
 
 data class Tecnico(

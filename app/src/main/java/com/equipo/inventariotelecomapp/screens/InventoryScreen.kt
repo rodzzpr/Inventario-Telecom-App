@@ -1,6 +1,7 @@
 package com.equipo.inventariotelecomapp.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -22,7 +23,7 @@ import com.equipo.inventariotelecomapp.model.Producto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InventoryScreen() {
+fun InventoryScreen(onNavigateToDetail: (Int) -> Unit) { // Recibe la función de navegación
     val productos = InventarioRepository.listaProductos
 
     Scaffold(
@@ -60,20 +61,24 @@ fun InventoryScreen() {
             }
 
             items(productos) { producto ->
-                ProductCard(producto = producto)
+                ProductCard(
+                    producto = producto,
+                    onClick = { onNavigateToDetail(producto.id) } // Dispara la navegación
+                )
             }
         }
     }
 }
 
 @Composable
-fun ProductCard(producto: Producto) {
-    // Lógica de alerta: Stock bajo si es menor a 30
+fun ProductCard(producto: Producto, onClick: () -> Unit) { // Nueva lambda onClick
     val esStockBajo = producto.stock < 30
     val colorAlerta = if (esStockBajo) Color.Red else MaterialTheme.colorScheme.primary
 
     ElevatedCard(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }, // Hace que toda la tarjeta sea clickable
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surface
@@ -86,7 +91,6 @@ fun ProductCard(producto: Producto) {
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Icono dinámico basado en el nombre del producto
             val icon = when {
                 producto.nombre.contains("Cable", ignoreCase = true) -> Icons.Default.ElectricalServices
                 producto.nombre.contains("Router", ignoreCase = true) -> Icons.Default.Router
