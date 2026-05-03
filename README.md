@@ -5,6 +5,7 @@ Esta aplicación es un prototipo funcional diseñado para optimizar el flujo de 
 
 
 👥 **Equipo de Desarrollo**
+
 Ricardo Prado
 
 Alejandro Zarruk
@@ -13,6 +14,7 @@ Anthony Flores
 
 
 🛠️ **Tecnologías Utilizadas**
+
 Lenguaje: Kotlin
 
 Framework UI: Jetpack Compose (Interfaces modernas y reactivas)
@@ -25,6 +27,7 @@ Control de Versiones: Git con flujo de trabajo basado en ramas
 
 
 🚀 **Instrucciones para Ejecutar la App**
+
 Clonar el repositorio: git clone [https://github.com/rodzzpr/Inventario-Telecom-App.git](https://github.com/rodzzpr/Inventario-Telecom-App.git)
 
 Abrir en Android Studio: Importar el proyecto como una "Empty Compose Activity".
