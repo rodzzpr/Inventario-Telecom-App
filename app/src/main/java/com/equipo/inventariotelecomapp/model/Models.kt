@@ -30,3 +30,11 @@ data class InsumoCritico(
     val productoId: Int,
     val alertaStockMinimo: Int
 )
+
+data class Movimiento(
+    val id: Int,
+    val tecnico: String,
+    val producto: String,
+    val cantidad: Int,
+    val fecha: String
+)
