@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.ElectricalServices
 import androidx.compose.material.icons.filled.Router
@@ -26,7 +27,8 @@ import com.equipo.inventariotelecomapp.model.Producto
 @Composable
 fun InventoryScreen(
     onNavigateToDetail: (Int) -> Unit,
-    onLogout: () -> Unit // <--- 1. Agregado el parámetro faltante
+    onNavigateToWithdrawal: () -> Unit,
+    onLogout: () -> Unit
 ) {
     val productos = InventarioRepository.listaProductos
 
@@ -55,6 +57,15 @@ fun InventoryScreen(
                     containerColor = MaterialTheme.colorScheme.primary
                 )
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onNavigateToWithdrawal,
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = Color.White
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "Registrar Retiro")
+            }
         },
         containerColor = MaterialTheme.colorScheme.background
     ) { innerPadding ->

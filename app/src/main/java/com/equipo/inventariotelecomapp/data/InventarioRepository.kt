@@ -37,4 +37,23 @@ object InventarioRepository {
     )
 
     val historialRetiros = mutableListOf<Retiro>()
+
+    fun procesarRetiro(productoId: Int, cantidad: Int): Boolean {
+        val producto = listaProductos.find { it.id == productoId }
+        return if (producto != null && producto.stock >= cantidad) {
+            producto.stock -= cantidad
+            historialRetiros.add(
+                Retiro(
+                    id = historialRetiros.size + 1,
+                    productoId = productoId,
+                    tecnicoId = 1, // ID por defecto del técnico actual
+                    cantidad = cantidad,
+                    fecha = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault()).format(java.util.Date())
+                )
+            )
+            true
+        } else {
+            false
+        }
+    }
 }

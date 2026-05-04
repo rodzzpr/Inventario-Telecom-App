@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import com.equipo.inventariotelecomapp.screens.InventoryScreen
 import com.equipo.inventariotelecomapp.screens.ProductDetailScreen
 import com.equipo.inventariotelecomapp.screens.LoginScreen
+import com.equipo.inventariotelecomapp.screens.WithdrawalScreen
 import com.equipo.inventariotelecomapp.ui.theme.InventarioTelecomAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,11 +40,20 @@ class MainActivity : ComponentActivity() {
                             onNavigateToDetail = { productId ->
                                 navController.navigate("detail/$productId")
                             },
+                            onNavigateToWithdrawal = {
+                                navController.navigate("withdrawal")
+                            },
                             onLogout = {
                                 navController.navigate("login") {
                                     popUpTo("inventory") { inclusive = true }
                                 }
                             }
+                        )
+                    }
+
+                    composable("withdrawal") {
+                        WithdrawalScreen(
+                            onBack = { navController.popBackStack() }
                         )
                     }
 
