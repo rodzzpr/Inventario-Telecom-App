@@ -11,6 +11,7 @@ import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.ElectricalServices
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Router
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -28,6 +29,7 @@ import com.equipo.inventariotelecomapp.model.Producto
 fun InventoryScreen(
     onNavigateToDetail: (Int) -> Unit,
     onNavigateToWithdrawal: () -> Unit,
+    onNavigateToHistory: () -> Unit,
     onLogout: () -> Unit
 ) {
     val productos = InventarioRepository.listaProductos
@@ -40,16 +42,15 @@ fun InventoryScreen(
                     Text(
                         "Inventario Central",
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimary
+                        color = Color.White
                     )
                 },
-                // 2. Agregamos el botón de cerrar sesión en las acciones
                 actions = {
                     IconButton(onClick = onLogout) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ExitToApp,
                             contentDescription = "Cerrar Sesión",
-                            tint = MaterialTheme.colorScheme.onPrimary
+                            tint = Color.White
                         )
                     }
                 },
@@ -59,12 +60,27 @@ fun InventoryScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = onNavigateToWithdrawal,
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = Color.White
+            Column(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.End
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Registrar Retiro")
+                // Botón para ver el Historial (Diseño secundario)
+                SmallFloatingActionButton(
+                    onClick = onNavigateToHistory,
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                ) {
+                    Icon(Icons.Default.History, contentDescription = "Ver Historial")
+                }
+
+                // Botón principal para Registrar Retiro
+                ExtendedFloatingActionButton(
+                    onClick = onNavigateToWithdrawal,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = Color.White,
+                    icon = { Icon(Icons.Default.Add, contentDescription = null) },
+                    text = { Text("Nuevo Retiro") }
+                )
             }
         },
         containerColor = MaterialTheme.colorScheme.background
@@ -164,14 +180,6 @@ fun ProductCard(producto: Producto, onClick: () -> Unit) {
                     style = MaterialTheme.typography.labelSmall,
                     color = if (esStockBajo) Color.Red else MaterialTheme.colorScheme.outline
                 )
-                if (esStockBajo) {
-                    Text(
-                        text = "¡Bajo Stock!",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = Color.Red,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
             }
         }
     }
